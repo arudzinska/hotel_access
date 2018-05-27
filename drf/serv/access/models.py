@@ -5,9 +5,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Customer(models.Model):
     """ Customer (both guests and non-guests) model """
     name = models.CharField(max_length=100)
-    #description = models.CharField(max_length=1000)
-    #slogan = models.CharField(max_length=500)
-    #founded_date = models.CharField(max_length=500)
     balance = models.FloatField()
     birth = models.DateField()
     is_guest = models.BooleanField()
