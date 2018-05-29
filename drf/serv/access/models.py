@@ -26,13 +26,15 @@ class Rule(models.Model):
     from_time = models.TimeField(null=True)
     to_time = models.TimeField(null=True)
     on_date = models.DateField(null=True)
+    price = models.FloatField(null=True)
     for_guests = models.NullBooleanField()
     adult = models.NullBooleanField()
     weekend = models.NullBooleanField()
     visited_this_day = models.ForeignKey(Area, on_delete=models.SET_NULL, related_name='+', null=True)
+    free_per_stay = models.PositiveIntegerField(null=True)
 
     def __str__(self):
-        return u'area: {}, can access: {}, from(time): {}, to(time): {}, on(date): {}, for guests: {}, adult: {}, weekend: {}, visited that day:{}'.format(self.area, self.can_access, self.from_time, self.to_time, self.on_date, self.for_guests, self.adult, self.weekend, self.visited_this_day)
+        return u'area: {}, can access: {}, from(time): {}, to(time): {}, on(date): {}, price: {}, for guests: {}, adult: {}, weekend: {}, visited that day:{}, free_per_stay: {}'.format(self.area, self.can_access, self.from_time, self.to_time, self.on_date, self.price, self.for_guests, self.adult, self.weekend, self.visited_this_day, self.free_per_stay)
 
 
 # class Store(models.Model):
