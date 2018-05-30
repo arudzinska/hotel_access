@@ -4,6 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Customer(models.Model):
     """ Customer (both guests and non-guests) model """
+
     name = models.CharField(max_length=100)
     balance = models.FloatField()
     birth = models.DateField()
@@ -12,12 +13,15 @@ class Customer(models.Model):
     def __str__(self):
         return u'{}, {}, guest: {}, {}e'.format(self.name, self.birth, self.is_guest, self.balance)
 
+
 class Area(models.Model):
     """ Hotel area model """
+
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return u'{}'.format(self.name)
+
 
 class Rule(models.Model):
     """ Rule model describing the conditions to enter an area.
@@ -29,7 +33,8 @@ class Rule(models.Model):
     can_access = models.BooleanField()
     from_time = models.TimeField(null=True)
     to_time = models.TimeField(null=True)
-    on_date = models.DateField(null=True)
+    from_date = models.DateField(null=True)
+    to_date = models.DateField(null=True)
     price = models.FloatField(null=True)
     for_guests = models.NullBooleanField()
     adult = models.NullBooleanField()
@@ -38,7 +43,15 @@ class Rule(models.Model):
     free_per_stay = models.PositiveIntegerField(null=True)
 
     def __str__(self):
-        return u'area: {}, can access: {}, from(time): {}, to(time): {}, on(date): {}, price: {}, for guests: {}, adult: {}, weekend: {}, visited that day:{}, free_per_stay: {}'.format(self.area, self.can_access, self.from_time, self.to_time, self.on_date, self.price, self.for_guests, self.adult, self.weekend, self.visited_this_day, self.free_per_stay)
+        return u'area: {}, can access: {}, from(time): {}, to(time): {}, from(date): {}, to(date) {}, price: {}, for guests: {}, adult: {}, weekend: {}, visited that day:{}, free_per_stay: {}'.format(self.area, self.can_access, self.from_time, self.to_time, self.from_date, self.to_date, self.price, self.for_guests, self.adult, self.weekend, self.visited_this_day, self.free_per_stay)
+
+
+class Logs(models.Model):
+    """ Rule model for logging the visits. """
+
+    name = models.ForeignKey(Customer, on_delete=models.SET_NULL, related_name='+')
+    date = models.DateField()
+    area = models.ForeignKey(Area, on_delete=models.SET_NULL(), related_name='+')
 
 
 # class Store(models.Model):
