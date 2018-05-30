@@ -19,3 +19,6 @@ class RuleSerializer(serializers.ModelSerializer):
             'on_date', 'price', 'for_guests', 'adult', 'weekend',
             'visited_this_day'
         )
+
+class AccessSerializer(serializers.ModelSerializer):
+    # Access: JSON z polem True/False i Description

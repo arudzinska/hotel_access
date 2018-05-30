@@ -6,3 +6,5 @@ class CustomerViewSet(viewsets.ModelViewSet):
     """ ViewSet for viewing and editing Customer objects """
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
+
+class AccessViewSet

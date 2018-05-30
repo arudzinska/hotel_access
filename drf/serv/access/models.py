@@ -20,7 +20,11 @@ class Area(models.Model):
         return u'{}'.format(self.name)
 
 class Rule(models.Model):
-    """ Rule model describing the conditions to enter an area """
+    """ Rule model describing the conditions to enter an area.
+
+    "area" many-to-many field creates a 'hidden' join table which may be complicated
+    to reach manually, but for the purpose of this app it is sufficient. """
+
     area = models.ManyToManyField(Area)
     can_access = models.BooleanField()
     from_time = models.TimeField(null=True)
