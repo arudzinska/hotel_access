@@ -18,11 +18,14 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from access.views import CustomerViewSet
 
+# this routing is probably not correct. I've seen some with regex.
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
 router = DefaultRouter()
 router.register(prefix='customers', viewset=CustomerViewSet)
+router.register(prefix='access', viewset=AccessViewSet)
 
 urlpatterns = router.urls

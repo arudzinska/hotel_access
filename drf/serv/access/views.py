@@ -12,7 +12,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
 
 class AccessViewSet(APIView):
-    """ ViewSet for checking if the customes has access to an area on a given timestamp. """
+    """ ViewSet for checking if the customer has access to an area on a given timestamp. """
 
     def check_rule(self, rule, cst_name, balance, area, timestamp):
         """
