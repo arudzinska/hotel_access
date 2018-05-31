@@ -1,7 +1,0 @@
-{
-  "name": "drf-client",
-  "description": "A sample Angular application",
-  "dependencies": {
-    "express": "^4.16.3"
-  }
-}
