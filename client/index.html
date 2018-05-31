@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="hotelAccess">
+    <head>
+        <meta charset="utf-8">
+        <title>Hotel access - Django + AngularJS</title>
+
+        <!--  Angular Setup -->
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+
+        <!-- Application Setup -->
+        <script src="public/appRoutes.js"></script>
+        <script src="public/app.js"></script>
+        <script src="public/components/access/services/customer.service.js"></script>
+
+        <!--  Controllers -->
+        <script src="public/components/access/controllers/access.control.js"></script>
+    </head>
+    <body>
+        <!-- The dynamic templates will be served within this div -->
+        <ui-view></ui-view>
+    </body>
+</html>
+
