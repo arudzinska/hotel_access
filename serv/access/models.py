@@ -29,7 +29,6 @@ class Rule(models.Model):
     to reach manually, but for the purpose of this app it is sufficient. """
 
     area = models.ManyToManyField(Area)
-    can_access = models.BooleanField()
     from_time = models.TimeField(null=True)
     to_time = models.TimeField(null=True)
     from_date = models.DateField(null=True)
@@ -42,7 +41,7 @@ class Rule(models.Model):
     free_per_stay = models.PositiveIntegerField(null=True)
 
     def __str__(self):
-        return u'area: {}, can access: {}, from(time): {}, to(time): {}, from(date): {}, to(date) {}, price: {}, for guests: {}, adult: {}, weekend: {}, visited that day:{}, free_per_stay: {}'.format(self.area, self.can_access, self.from_time, self.to_time, self.from_date, self.to_date, self.price, self.for_guests, self.adult, self.weekend, self.visited_this_day, self.free_per_stay)
+        return u'area: {}, from(time): {}, to(time): {}, from(date): {}, to(date) {}, price: {}, for guests: {}, adult: {}, weekend: {}, visited that day:{}, free_per_stay: {}'.format(self.area, self.from_time, self.to_time, self.from_date, self.to_date, self.price, self.for_guests, self.adult, self.weekend, self.visited_this_day, self.free_per_stay)
 
 
 class Logs(models.Model):

@@ -21,7 +21,7 @@ class RuleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rule
         fields = (
-            'area', 'can_access', 'from_time', 'to_time',
+            'area', 'from_time', 'to_time',
             'from_date', 'to_date', 'price', 'for_guests', 'adult', 'weekend',
             'visited_this_day'
         )
