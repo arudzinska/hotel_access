@@ -12,7 +12,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
 
 class AccessViewSet(APIView):
-    """ ViewSet for checking if the customer has access to an area on a given timestamp. """
+    """ View for checking if the customer has access to an area on a given timestamp. """
 
     def check_rule(self, rule, cst_name, balance, area, timestamp):
         """
@@ -51,7 +51,7 @@ class AccessViewSet(APIView):
                 else:
                     return (None, None)
 
-        #   TODO: Handler for dates - similar to time
+        #   TODO: Handler for dates - similar to time (not a perfect solution)
 
         if rule.free_per_stay:
             # pseudocode:
@@ -77,16 +77,15 @@ class AccessViewSet(APIView):
         :return: <class 'rest_framework.response.Response'>
         """
 
-
         try:
             cst = Customer.objects.get(name=cst_name)
         except Customer.DoesNotExist:
             raise Http404
 
-        # calculate the age of the person
+        # TODO: calculate the age of the person
         balance = cst.balance
         is_guest = cst.is_guest
-        # exclude var is used later in exclusion filtering
+        # 'exclude' var is used later in exclusion filtering
         exclude = not is_guest
 
 
@@ -120,6 +119,8 @@ class AccessViewSet(APIView):
             elif not w_rules and exclude = False:
                 serializer = AccessSerializer(False, "This area is not accessible on business days.")
                 return Response(serializer.data)
+
+        # above statements for g_rules, ad_rules and w_rules could probably be organised in a function with 3 calls
 
         # w_rules is a QuerySet containing filtered rules based on is_guest, adult, weekend
         for rule in w_rules:

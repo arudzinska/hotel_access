@@ -1,6 +1,5 @@
 from django.db import models
-from django.utils import timezone
-from django.core.validators import MaxValueValidator, MinValueValidator
+
 
 class Customer(models.Model):
     """ Customer (both guests and non-guests) model """
@@ -26,7 +25,7 @@ class Area(models.Model):
 class Rule(models.Model):
     """ Rule model describing the conditions to enter an area.
 
-    "area" many-to-many field creates a 'hidden' join table which may be complicated
+    'area' many-to-many field creates a 'hidden' join table which may be complicated
     to reach manually, but for the purpose of this app it is sufficient. """
 
     area = models.ManyToManyField(Area)
@@ -47,32 +46,8 @@ class Rule(models.Model):
 
 
 class Logs(models.Model):
-    """ Rule model for logging the visits. """
+    """ Model for visits logs. """
 
     name = models.ForeignKey(Customer, on_delete=models.SET_NULL, related_name='+')
     date = models.DateField()
     area = models.ForeignKey(Area, on_delete=models.SET_NULL(), related_name='+')
-
-
-# class Store(models.Model):
-#     """ Store location model.  Foreign key to Chain."""
-#     chain = models.ForeignKey(Chain)
-#     number = models.CharField(max_length=20)
-#     address = models.CharField(max_length=1000)
-#     opening_date = models.DateTimeField(default=timezone.now)
-#
-#     # Business hours in a 24 hour clock.  Default 8am-5pm.
-#     business_hours_start = models.IntegerField(
-#         default=8,
-#         validators=[
-#             MinValueValidator(0),
-#             MaxValueValidator(23)
-#         ]
-#     )
-#     business_hours_end = models.IntegerField(
-#         default=17,
-#         validators=[
-#             MinValueValidator(0),
-#             MaxValueValidator(23)
-#         ]
-#     )

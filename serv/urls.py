@@ -18,7 +18,7 @@ from django.urls import path
 from rest_framework.routers import DefaultRouter
 from access.views import CustomerViewSet
 
-# this routing is probably not correct. I've seen some with regex.
+# This routing is probably not correct. Would need to review it.
 
 urlpatterns = [
     path('admin/', admin.site.urls),
