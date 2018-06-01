@@ -94,14 +94,14 @@ class AccessViewSet(APIView):
             if not a_rules:
                 # No rules for this area - access forbidden!
                 serializer = AccessSerializer(False, "Access to this area is forbidden.")
-                return
+                return Response(serializer.data)
 
         g_rules = a_rules.exclude(guest=exclude)
             if not g_rules and exclude = True:
                 serializer = AccessSerializer(False, "This area is not accessible for non-guests.")
                 return Response(serializer.data)
             elif not g_rules and exclude = False:
-            serializer = AccessSerializer(False, "This area is not accessible for guests.")
+                serializer = AccessSerializer(False, "This area is not accessible for guests.")
                 return Response(serializer.data)
 
         ad_rules = g_rules.exclude(adult=exclude)
